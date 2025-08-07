@@ -3,8 +3,7 @@
 
 import Link from "next/link"
 import { TrendingUp, Mail, Phone, MapPin, Twitter, Linkedin, Github } from "lucide-react"
-import { Button } from "@/components/ui/Button"
-import { Badge } from "@/components/ui/Badge"
+import { Button, Badge } from "@/components/ui"
 
 const footerSections = [
   {

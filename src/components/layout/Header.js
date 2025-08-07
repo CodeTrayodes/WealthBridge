@@ -5,8 +5,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, TrendingUp, BarChart3 } from "lucide-react"
-import { Button } from "@/components/ui/Button"
-import { Badge } from "@/components/ui/Badge"
+import { Button, Badge } from "@/components/ui"
 import { cn } from "@/lib/utils"
 
 const navItems = [

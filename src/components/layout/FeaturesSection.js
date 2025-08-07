@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useInView, useAnimation } from 'framer-motion';
+import React, { useState, useRef, useEffect } from "react";
+import { motion, useInView, useAnimation } from "framer-motion";
 import {
   Globe,
   Shield,
@@ -10,86 +10,99 @@ import {
   FileText,
   Calculator,
   CheckCircle,
-  ArrowRight
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+  ArrowRight,
+} from "lucide-react";
+
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui";
 
 // Feature data
 const features = [
   {
     icon: Globe,
     title: "Unified Global View",
-    description: "Track all your investments across India and abroad in one comprehensive dashboard",
+    description:
+      "Track all your investments across India and abroad in one comprehensive dashboard",
     details: [
       { text: "Multi-currency portfolio tracking" },
       { text: "Real-time exchange rate conversion" },
       { text: "Consolidated performance metrics" },
-      { text: "Cross-border asset allocation" }
+      { text: "Cross-border asset allocation" },
     ],
-    color: "primary"
+    color: "primary",
   },
   {
     icon: Brain,
     title: "AI-Powered Insights",
-    description: "Get personalized recommendations and predictive analytics powered by advanced AI",
+    description:
+      "Get personalized recommendations and predictive analytics powered by advanced AI",
     details: [
       { text: "Smart investment recommendations" },
       { text: "Risk assessment and optimization" },
       { text: "Market trend predictions" },
-      { text: "Tax-efficient strategies" }
+      { text: "Tax-efficient strategies" },
     ],
-    color: "secondary"
+    color: "secondary",
   },
   {
     icon: Users,
     title: "Family Portfolio Management",
-    description: "Seamlessly manage and track investments for your entire family across borders",
+    description:
+      "Seamlessly manage and track investments for your entire family across borders",
     details: [
       { text: "Multi-generational tracking" },
       { text: "Shared portfolio access" },
       { text: "Family wealth planning" },
-      { text: "Inheritance planning tools" }
+      { text: "Inheritance planning tools" },
     ],
-    color: "profit"
+    color: "profit",
   },
   {
     icon: Shield,
     title: "Bank-Level Security",
-    description: "Enterprise-grade security with end-to-end encryption and regulatory compliance",
+    description:
+      "Enterprise-grade security with end-to-end encryption and regulatory compliance",
     details: [
       { text: "256-bit encryption" },
       { text: "Two-factor authentication" },
       { text: "SOC 2 Type II compliance" },
-      { text: "Regular security audits" }
+      { text: "Regular security audits" },
     ],
-    color: "heritage-saffron"
+    color: "heritage-saffron",
   },
   {
     icon: FileText,
     title: "Document Intelligence",
-    description: "AI-powered document processing for statements, tax forms, and legal documents",
+    description:
+      "AI-powered document processing for statements, tax forms, and legal documents",
     details: [
       { text: "OCR statement processing" },
       { text: "Smart categorization" },
       { text: "Tax document analysis" },
-      { text: "Compliance tracking" }
+      { text: "Compliance tracking" },
     ],
-    color: "primary"
+    color: "primary",
   },
   {
     icon: Calculator,
     title: "Tax Optimization",
-    description: "Maximize your returns with intelligent tax planning across jurisdictions",
+    description:
+      "Maximize your returns with intelligent tax planning across jurisdictions",
     details: [
       { text: "Multi-country tax planning" },
       { text: "DTAA optimization" },
       { text: "TDS management" },
-      { text: "Capital gains planning" }
+      { text: "Capital gains planning" },
     ],
-    color: "secondary"
-  }
+    color: "secondary",
+  },
 ];
 
 // Utility function for color classes
@@ -98,7 +111,8 @@ const getColorClasses = (color) => {
     primary: "text-primary bg-primary/10 border-primary/20",
     secondary: "text-secondary bg-secondary/10 border-secondary/20",
     profit: "text-profit bg-profit/10 border-profit/20",
-    "heritage-saffron": "text-heritage-saffron bg-heritage-saffron/10 border-heritage-saffron/20"
+    "heritage-saffron":
+      "text-heritage-saffron bg-heritage-saffron/10 border-heritage-saffron/20",
   };
   return colorMap[color];
 };
@@ -116,7 +130,9 @@ const FeatureCard = ({ feature, index, variants }) => {
       >
         <CardHeader className="pb-4">
           <motion.div
-            animate={isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
+            animate={
+              isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }
+            }
             transition={{ duration: 0.3 }}
             className={`w-14 h-14 rounded-xl border ${getColorClasses(feature.color)} 
                        flex items-center justify-center mb-4`}
@@ -136,7 +152,11 @@ const FeatureCard = ({ feature, index, variants }) => {
         <CardContent>
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={isHovered ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+            animate={
+              isHovered
+                ? { height: "auto", opacity: 1 }
+                : { height: 0, opacity: 0 }
+            }
             transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
@@ -145,7 +165,9 @@ const FeatureCard = ({ feature, index, variants }) => {
                 <motion.div
                   key={idx}
                   initial={{ x: -10, opacity: 0 }}
-                  animate={isHovered ? { x: 0, opacity: 1 } : { x: -10, opacity: 0 }}
+                  animate={
+                    isHovered ? { x: 0, opacity: 1 } : { x: -10, opacity: 0 }
+                  }
                   transition={{ duration: 0.2, delay: idx * 0.05 }}
                   className="flex items-center space-x-2 text-sm text-muted-foreground"
                 >
@@ -178,16 +200,16 @@ const FeaturesSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: {
       opacity: 0,
       y: 50,
-      scale: 0.95
+      scale: 0.95,
     },
     visible: {
       opacity: 1,
@@ -195,9 +217,9 @@ const FeaturesSection = () => {
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
@@ -212,7 +234,7 @@ const FeaturesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={controls}
           variants={{
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
           }}
           className="text-center mb-16"
         >
@@ -220,13 +242,14 @@ const FeaturesSection = () => {
             POWERFUL FEATURES
           </Badge>
           <h2 className="heading-2 mb-6 text-balance">
-            Everything You Need to{' '}
-            <span className="text-gradient-primary">Manage Wealth</span>{' '}
-            Across Borders
+            Everything You Need to{" "}
+            <span className="text-gradient-primary">Manage Wealth</span> Across
+            Borders
           </h2>
           <p className="body-large text-muted-foreground max-w-3xl mx-auto">
-            Our comprehensive platform combines cutting-edge technology with deep understanding 
-            of NRI investment challenges to deliver unmatched wealth management experience.
+            Our comprehensive platform combines cutting-edge technology with
+            deep understanding of NRI investment challenges to deliver unmatched
+            wealth management experience.
           </p>
         </motion.div>
 
@@ -252,7 +275,11 @@ const FeaturesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={controls}
           variants={{
-            visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.8 } }
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.6, delay: 0.8 },
+            },
           }}
           className="text-center"
         >
