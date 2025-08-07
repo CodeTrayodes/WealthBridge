@@ -2,8 +2,6 @@ import { Suspense } from 'react';
 import NRINewsHub from '@/components/community/NRINewsHub';
 import ErrorBoundary from '@/components/community/ErrorBoundary';
 import { Spinner } from '@/components/ui/spinner';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
 
 export const metadata = {
   title: "NRI Financial News Hub | WealthBridge",
@@ -63,9 +61,9 @@ export default function NewsPage() {
   return (
     <ErrorBoundary>
       <Suspense fallback={<NewsPageLoading />}>
-        <Header />
+      
         <NRINewsHub />
-        <Footer />
+      
       </Suspense>
     </ErrorBoundary>
   );

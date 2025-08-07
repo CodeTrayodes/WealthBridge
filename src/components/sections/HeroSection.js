@@ -128,9 +128,8 @@ const HeroSection = () => {
             transition={{ delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-8"
           >
-            <Button className="btn-primary group" size="xl">
+            <Button className="" size="xl">
               Start Your Wealth Journey
-              <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             {/* Uncomment if needed:
             <Button className="btn-secondary group">

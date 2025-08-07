@@ -1,180 +1,187 @@
-"use client";
+// src/components/layout/Header.jsx
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Globe } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Menu, X, TrendingUp, BarChart3 } from "lucide-react"
+import { Button } from "@/components/ui/Button"
+import { Badge } from "@/components/ui/Badge"
+import { cn } from "@/lib/utils"
+
+const navItems = [
+  { name: "About Us", href: "/", description: "Our mission and vision" },
+  { name: "News", href: "/news", description: "Latest financial insights" },
+  { name: "Dashboard", href: "/dashboard", description: "Your portfolio overview" },
+]
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const router = useRouter();
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href) => {
+    if (href === '/') return pathname === '/'
+    return pathname.startsWith(href)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+      setIsScrolled(window.scrollY > 20)
+    }
 
-  const navItems = [
-    { name: "About", href: "#about" },
-    { name: "News", href: "/news" },
-  ];
-
-  const handleRedirect = (x) => {
-    router.push(x);
-  };
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-black/90 backdrop-blur-xl border-b border-orange-500/20 shadow-lg"
+    <header 
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled 
+          ? "bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-lg" 
           : "bg-transparent"
-      }`}
+      )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex items-center space-x-3 group cursor-pointer"
-            >
-              <div className="relative">
-                <div className="w-11 h-11 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-glow-orange transition-all duration-300">
-                  <Globe className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full border-2 border-background flex items-center justify-center shadow-sm">
-                  <span className="text-[10px] font-bold text-orange-900">₹</span>
-                </div>
+      <nav className="container-hero py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo Section */}
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="relative">
+              <div className="w-10 h-10 bg-gradient-to-br from-bs-blue-500 to-bs-purple-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-glow-blue transition-all duration-300 group-hover:scale-105">
+                <TrendingUp className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-white tracking-tight group-hover:text-orange-400 transition-colors duration-300">
-                  WealthBridge
-                </h1>
-                <p className="text-[10px] text-orange-400 font-medium tracking-wide -mt-1">
-                  भारतीय Wealth Platform
-                </p>
-              </div>
-            </motion.div>
+              <div className="absolute -inset-1 bg-gradient-to-br from-bs-blue-500 to-bs-purple-500 rounded-xl opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-sm"></div>
+            </div>
+            <div className="flex flex-col">
+              <h1 className="text-xl font-bold bg-gradient-to-r from-bs-blue-400 to-bs-purple-400 bg-clip-text text-transparent">
+                WealthBridge
+              </h1>
+              <p className="text-xs text-muted-foreground -mt-1">भारतीय Wealth Platform</p>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.a
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
                 key={item.name}
                 href={item.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + index * 0.1 }}
-                className="relative text-gray-300 hover:text-orange-400 transition-colors duration-200 font-medium text-sm group"
+                className={cn(
+                  "group relative px-3 py-2 text-sm font-medium transition-colors duration-300",
+                  isActive(item.href)
+                    ? "text-bs-blue-400"
+                    : "text-muted-foreground hover:text-white"
+                )}
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-amber-500 group-hover:w-full transition-all duration-300"></span>
-              </motion.a>
+                <span className={cn(
+                  "absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-bs-blue-400 to-bs-purple-400 transition-transform duration-300 origin-center",
+                  isActive(item.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                )}></span>
+              </Link>
             ))}
-          </nav>
+          </div>
 
-          {/* Desktop CTA */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            className="hidden md:flex items-center space-x-3"
-          >
-            <Button
-              variant="ghost"
-              onClick={() => handleRedirect("/login")}
-              className="text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 font-medium transition-all duration-300"
-            >
-              Login
+          {/* Desktop Auth Buttons */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <Button variant="ghost" size="sm" asChild>
+              <Link href="/login">Login</Link>
             </Button>
-            <Button
-              className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white shadow-md hover:shadow-glow-orange transform hover:scale-105 transition-all duration-300 font-medium px-6"
-              onClick={() => handleRedirect("/signup")}
-            >
-              Get Started
+            <Button variant="default" size="sm">
+              <Link href="/get-started">Get Started</Link>
             </Button>
-          </motion.div>
+          </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="md:hidden p-2 text-gray-300 hover:text-orange-400 transition-colors rounded-lg hover:bg-orange-500/10"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-muted-foreground hover:text-white transition-colors duration-300"
+            aria-label="Toggle mobile menu"
           >
-            <motion.div
-              animate={isMenuOpen ? { rotate: 90 } : { rotate: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {isMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </motion.div>
-          </motion.button>
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-orange-500/20"
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-              <nav className="flex flex-col space-y-4">
+        {/* Mobile Navigation */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden">
+            <div className="absolute top-full left-0 right-0 mt-2 mx-4 bg-card/95 backdrop-blur-lg border border-border/50 rounded-2xl shadow-xl overflow-hidden">
+              {/* Mobile Header */}
+              <div className="px-6 py-4 border-b border-border/50">
+                <Badge variant="hero" size="sm">
+                  <BarChart3 className="w-3 h-3" />
+                  NRI Wealth Management
+                </Badge>
+              </div>
+
+              {/* Mobile Navigation Items */}
+              <div className="py-4">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <Link
                     key={item.name}
                     href={item.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="text-gray-300 hover:text-orange-400 transition-colors duration-200 font-medium py-2 px-3 rounded-lg hover:bg-orange-500/10"
-                    onClick={() => setIsMenuOpen(false)}
+                    className={cn(
+                      "group block px-6 py-4 transition-colors duration-300",
+                      isActive(item.href)
+                        ? "bg-bs-blue-500/10 border-r-2 border-bs-blue-400"
+                        : "hover:bg-bs-blue-500/5"
+                    )}
+                    onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {item.name}
-                  </motion.a>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className={cn(
+                          "text-base font-medium transition-colors duration-300",
+                          isActive(item.href)
+                            ? "text-bs-blue-400"
+                            : "text-foreground group-hover:text-bs-blue-400"
+                        )}>
+                          {item.name}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          {item.description}
+                        </div>
+                      </div>
+                      <div className={cn(
+                        "w-2 h-2 bg-bs-blue-500 rounded-full transition-opacity duration-300",
+                        isActive(item.href) ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                      )}></div>
+                    </div>
+                  </Link>
                 ))}
-                <div className="flex flex-col space-y-3 pt-4 border-t border-orange-500/20">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="justify-start text-gray-300 hover:text-orange-400 hover:bg-orange-500/10"
-                  >
-                    Sign In
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="bg-gradient-to-r from-orange-500 to-orange-600 text-white justify-start shadow-md"
-                  >
-                    Get Started
-                  </Button>
-                </div>
-              </nav>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
-  );
-};
+              </div>
 
-export default Header;
+              {/* Mobile Auth Buttons */}
+              <div className="px-6 py-4 border-t border-border/50 space-y-3">
+                <Button variant="ghost" size="sm" className="w-full justify-center" asChild>
+                  <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
+                    Login to Dashboard
+                  </Link>
+                </Button>
+                <Button variant="default" size="sm" className="w-full justify-center" asChild>
+                  <Link href="/get-started" onClick={() => setIsMobileMenuOpen(false)}>
+                    Get Started Today
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Mobile Footer */}
+              <div className="px-6 py-3 bg-bs-blue-500/5 text-center">
+                <p className="text-xs text-muted-foreground">
+                  Trusted by 10,000+ NRI investors worldwide
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  )
+}
+
+export default Header
