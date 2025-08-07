@@ -15,9 +15,8 @@ import {
   ArrowUp,
   ArrowDown
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge, StatusBadge } from '@/components/ui/Badge';
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, StatusBadge } from '@/components/ui';
+
 
 const PerformanceChart = ({ data, period, isBalanceVisible }) => {
   const [selectedMetric, setSelectedMetric] = useState('portfolio');

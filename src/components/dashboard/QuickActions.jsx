@@ -13,8 +13,8 @@ import {
   Smartphone,
   MessageCircle
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
+import { Button, Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
+
 
 const QuickActions = () => {
   const actions = [

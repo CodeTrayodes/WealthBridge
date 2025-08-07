@@ -1,3 +1,6 @@
+// src/components/ui/ScrollReveal.jsx
+'use client';
+
 import { useEffect, useRef, useState } from 'react'
 
 export const ScrollReveal = ({ 

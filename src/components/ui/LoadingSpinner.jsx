@@ -1,4 +1,6 @@
 // src/components/ui/LoadingSpinner.jsx
+'use client';
+
 export const LoadingSpinner = ({ size = "default", className = "" }) => {
   const sizeClasses = {
     sm: "w-4 h-4",

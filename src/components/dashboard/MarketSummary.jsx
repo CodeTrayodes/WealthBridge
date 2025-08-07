@@ -7,15 +7,12 @@ import {
   TrendingUp,
   TrendingDown,
   Globe,
-  DollarSign,
-  Clock,
   ExternalLink,
   RefreshCw,
   Activity,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
-import { Button } from "@/components/ui/Button";
-import { Badge, StatusBadge } from "@/components/ui/Badge";
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, StatusBadge } from "@/components/ui";
+
 
 const MarketSummary = () => {
   const marketData = [

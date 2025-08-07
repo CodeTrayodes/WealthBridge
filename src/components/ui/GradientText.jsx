@@ -1,3 +1,6 @@
+// src/components/ui/GradientText.jsx
+'use client';
+
 export const GradientText = ({ children, className = "", variant = "default" }) => {
   const variants = {
     default: "bg-gradient-to-r from-bs-blue-400 to-bs-purple-400",

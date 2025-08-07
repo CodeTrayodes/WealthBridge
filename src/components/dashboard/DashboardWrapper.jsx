@@ -5,8 +5,7 @@ import React, { Suspense } from 'react';
 import { RefreshCw, Home, AlertTriangle } from 'lucide-react';
 import Dashboard from './Dashboard';
 import DashboardAuth from './DashboardAuth';
-import ErrorBoundary from '@/components/community/ErrorBoundary';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { LoadingSpinner } from '@/components/ui';
 
 // Loading component for dashboard
 function DashboardLoading() {

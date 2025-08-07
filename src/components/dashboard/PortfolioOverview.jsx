@@ -16,9 +16,8 @@ import {
   ArrowDown,
   Percent
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge, StatusBadge } from '@/components/ui/Badge';
+import { Card, CardContent, CardHeader, CardTitle, Button, Badge, StatusBadge } from '@/components/ui';
+
 
 const PortfolioOverview = ({ 
   portfolioData, 

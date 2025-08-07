@@ -29,9 +29,8 @@ import {
   Loader2,
   Sparkles,
 } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { Badge, FeatureBadge } from "@/components/ui/Badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import {  } from "@/components/ui/Button";
+import { Button, Badge, FeatureBadge, Card, CardContent, CardHeader, CardTitle } from "@/components/ui";
 import Link from "next/link";
 import { useNews } from "@/hooks/useNews";
 import { toast } from "sonner";

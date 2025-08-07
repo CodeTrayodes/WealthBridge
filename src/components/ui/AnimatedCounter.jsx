@@ -1,3 +1,6 @@
+// src/components/ui/AnimatedCounter.jsx
+'use client';
+
 import { useEffect, useState } from 'react'
 
 export const AnimatedCounter = ({ end, duration = 2000, prefix = "", suffix = "" }) => {

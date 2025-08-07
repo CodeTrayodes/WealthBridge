@@ -20,9 +20,8 @@ import {
   Calendar,
   Tag
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge, StatusBadge } from '@/components/ui/Badge';
+import { Badge, StatusBadge, Button, Card, CardContent, CardHeader, CardTitle } from '@/components/ui';
+
 
 const TransactionHistory = ({ transactions, isBalanceVisible }) => {
   const [filter, setFilter] = useState('all');

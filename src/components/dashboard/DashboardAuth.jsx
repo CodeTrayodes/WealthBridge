@@ -20,9 +20,8 @@ import {
   Landmark,
   RefreshCw
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge, FeatureBadge } from '@/components/ui/Badge';
+import { Card, CardContent, CardHeader, CardTitle,  Button, Badge, FeatureBadge  } from '@/components/ui/Card';
+
 
 const DashboardAuth = ({ children, userProfile }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

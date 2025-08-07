@@ -3,9 +3,8 @@
 
 import React from 'react';
 import { AlertTriangle, RefreshCw, Home } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
+import { Badge, Button, Card, CardContent, CardHeader, CardTitle  } from '@/components/ui';
+
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
