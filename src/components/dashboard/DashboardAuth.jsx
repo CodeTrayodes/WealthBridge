@@ -20,7 +20,7 @@ import {
   Landmark,
   RefreshCw
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle,  Button, Badge, FeatureBadge  } from '@/components/ui/Card';
+import { Card, CardContent, CardHeader, CardTitle,  Button, Badge, FeatureBadge  } from '@/components/ui';
 
 
 const DashboardAuth = ({ children, userProfile }) => {
